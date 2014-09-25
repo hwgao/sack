@@ -160,7 +160,12 @@ create_shortcut_cmd() {
 # Switch to a different profile
 switchprofile() {
     # Get the specified profile name from cmdline
-    sack__selected_profile=$1
+    if [[ $# -eq 0 ]]; then
+        # If no profile name, switch to no_profile
+        sack__selected_profile="no_profile"
+    else
+        sack__selected_profile=$1
+    fi
 
     # Try to find the corresponding profile entry that matches the name EXACTLY 
     # with an entry in config file
